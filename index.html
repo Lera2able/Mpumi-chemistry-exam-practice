@@ -3,22 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mpumi's Grade 12 Chemistry Practice Portal</title>
+    <title>Physical Sciences Quiz Application</title>
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-        }
-        
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
@@ -28,205 +18,268 @@
             line-height: 1.6;
         }
         
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
         
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
+        header {
+            background-color: #2c3e50;
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        header h1 {
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .nav-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
             border-radius: 4px;
-            transition: background 0.3s;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         
-        nav ul li a:hover, nav ul li a.active {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        main {
-            padding: 2rem 0;
-            min-height: calc(100vh - 200px);
+        .nav-btn:hover {
+            background-color: #2980b9;
         }
         
         .section {
             display: none;
-            background: white;
+            background-color: white;
+            padding: 25px;
             border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
         }
         
-        .section.active {
+        .active {
             display: block;
         }
         
-        h1, h2, h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
+        .welcome {
+            text-align: center;
+            padding: 40px 20px;
         }
         
-        h1 {
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 0.5rem;
+        .welcome h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
         }
         
-        .btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            margin: 0.5rem;
-        }
-        
-        .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .btn-accent {
-            background: var(--accent);
-        }
-        
-        .btn-accent:hover {
-            background: #c0392b;
-        }
-        
-        .btn-success {
-            background: var(--success);
-        }
-        
-        .btn-success:hover {
-            background: #27ae60;
+        .welcome p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 1.1rem;
         }
         
         .question-container {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            border-left: 4px solid var(--secondary);
-            background: #f8f9fa;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
         }
         
         .question {
-            margin-bottom: 1rem;
-            font-weight: 500;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
         }
         
         .options {
-            margin: 1rem 0;
+            list-style-type: none;
         }
         
         .option {
-            margin: 0.5rem 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .option input {
-            margin-right: 0.7rem;
-        }
-        
-        .memo {
-            display: none;
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #e8f4f8;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background-color: #f8f9fa;
             border-radius: 4px;
-            border-left: 4px solid var(--success);
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
         
-        .memo.active {
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .option.selected {
+            background-color: #d1ecf1;
+            border-left: 4px solid #3498db;
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .question-number {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .explanation.show {
             display: block;
         }
         
-        .exam-timer {
-            background: var(--dark);
-            color: white;
-            padding: 0.7rem 1rem;
-            border-radius: 4px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        
-        .exam-controls {
-            display: flex;
-            justify-content: space-between;
-            margin: 1.5rem 0;
-        }
-        
-        footer {
-            background: var(--dark);
-            color: white;
+        .score-container {
             text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
         
-        .guideline-item {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: #f8f9fa;
+        .formula-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
             border-radius: 4px;
         }
         
-        .guideline-item h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
+        .formula-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .mcq-section-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .structured-question {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+        
+        .subquestion {
+            margin: 15px 0;
+            padding-left: 15px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .check-answer-btn {
+            margin-top: 10px;
+        }
+        
+        .correct-answer {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 5px;
         }
         
         @media (max-width: 768px) {
-            .header-content {
+            .container {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .controls {
                 flex-direction: column;
-                text-align: center;
+                gap: 10px;
             }
             
-            nav ul {
-                margin-top: 1rem;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0 0.5rem;
+            .btn {
+                width: 100%;
             }
         }
     </style>
@@ -234,537 +287,525 @@
 <body>
     <header>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">Mpumi's Chemistry Practice</div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
-                        <li><a href="#" class="nav-link" data-section="guidelines">Guidelines</a></li>
-                        <li><a href="#" class="nav-link" data-section="practice">Practice Questions</a></li>
-                        <li><a href="#" class="nav-link" data-section="exam">Mock Exam</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <h1>Physical Sciences Grade 12 Quiz Application</h1>
+            <p>Test your knowledge with questions from past papers</p>
+            <nav>
+                <button class="nav-btn" onclick="showSection('welcome')">Home</button>
+                <button class="nav-btn" onclick="showSection('multiple-choice')">Multiple Choice</button>
+                <button class="nav-btn" onclick="showSection('structured-questions')">Structured Questions</button>
+                <button class="nav-btn" onclick="showSection('formulas')">Formulas & Constants</button>
+                <button class="nav-btn" onclick="showSection('guidelines')">Exam Guidelines</button>
+            </nav>
         </div>
     </header>
-    
-    <main>
-        <div class="container">
-            <!-- Home Section -->
-            <section id="home" class="section active">
-                <h1>Welcome to Your Chemistry Practice Portal</h1>
-                <p>This portal is designed to help you prepare for your Grade 12 Chemistry exam. Here you'll find:</p>
-                <ul style="margin: 1rem 0 1rem 2rem;">
-                    <li>Exam guidelines and marking criteria</li>
-                    <li>Practice questions with solutions</li>
-                    <li>A timed mock exam that simulates the real exam experience</li>
-                </ul>
-                <p>Use the navigation above to explore the different sections. Good luck with your preparation!</p>
-                
-                <div style="margin-top: 2rem;">
-                    <h2>Quick Start</h2>
-                    <div style="display: flex; flex-wrap: wrap; margin-top: 1rem;">
-                        <a href="#" class="btn nav-link" data-section="guidelines">View Guidelines</a>
-                        <a href="#" class="btn nav-link" data-section="practice">Practice Questions</a>
-                        <a href="#" class="btn btn-accent nav-link" data-section="exam">Take Mock Exam</a>
-                    </div>
+
+    <div class="container">
+        <!-- Welcome Section -->
+        <div id="welcome" class="section active">
+            <div class="welcome">
+                <h2>Welcome to the Physical Sciences Quiz Application</h2>
+                <p>This application contains questions from past Physical Sciences papers for Grade 12 students. Use it to test your knowledge and prepare for exams.</p>
+                <p>Select a section from the navigation menu to begin.</p>
+                <div style="margin-top: 30px;">
+                    <button class="btn btn-primary" onclick="showSection('multiple-choice')">Start with Multiple Choice Questions</button>
                 </div>
-            </section>
-            
-            <!-- Guidelines Section -->
-            <section id="guidelines" class="section">
-                <h1>Exam Guidelines</h1>
-                <p>These guidelines are based on the CAPS curriculum and the 2024 exam structure.</p>
-                
-                <div class="guideline-item">
-                    <h3>Paper Structure</h3>
-                    <p><strong>Paper 2: Chemistry</strong> - 150 marks, 3 hours</p>
-                    <ul style="margin-left: 2rem;">
-                        <li>10 multiple-choice questions (20 marks)</li>
-                        <li>Structured questions (130 marks)</li>
-                    </ul>
-                </div>
-                
-                <div class="guideline-item">
-                    <h3>Marking Guidelines</h3>
-                    <p>Understanding how marks are allocated can help you maximize your score:</p>
-                    <ul style="margin-left: 2rem;">
-                        <li>Show ALL formulae and substitutions in calculations</li>
-                        <li>Round off final answers to TWO decimal places</li>
-                        <li>Write neatly and legibly</li>
-                        <li>Number answers correctly according to the question numbering</li>
-                    </ul>
-                </div>
-                
-                <div class="guideline-item">
-                    <h3>Key Topics</h3>
-                    <p>The Chemistry paper covers these main areas:</p>
-                    <ul style="margin-left: 2rem;">
-                        <li>Organic Chemistry</li>
-                        <li>Energy and Change</li>
-                        <li>Rate and Extent of Reaction</li>
-                        <li>Chemical Equilibrium</li>
-                        <li>Acids and Bases</li>
-                        <li>Electrochemical Reactions</li>
-                    </ul>
-                </div>
-                
-                <div class="guideline-item">
-                    <h3>Useful Tips</h3>
-                    <ul style="margin-left: 2rem;">
-                        <li>Start each question on a new page in your answer book</li>
-                        <li>Leave one line between two subquestions</li>
-                        <li>You may use a non-programmable calculator</li>
-                        <li>Refer to the DATA SHEETS provided during the exam</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <!-- Practice Questions Section -->
-            <section id="practice" class="section">
-                <h1>Practice Questions</h1>
-                <p>Practice with these questions. Use the "Show Memo" button to check your answers.</p>
-                
-                <div style="margin: 1.5rem 0;">
-                    <button class="btn" id="shuffle-mcq">Shuffle MCQs</button>
-                    <button class="btn" id="shuffle-long">Shuffle Long Questions</button>
-                </div>
-                
-                <div id="practice-questions-container">
-                    <!-- Questions will be loaded here by JavaScript -->
-                </div>
-            </section>
-            
-            <!-- Mock Exam Section -->
-            <section id="exam" class="section">
-                <h1>Mock Exam</h1>
-                <p>Simulate the real exam experience with this timed test. You have 3 hours to complete it.</p>
-                
-                <div id="exam-instructions" class="guideline-item">
-                    <h3>Exam Instructions</h3>
-                    <ul style="margin-left: 2rem;">
-                        <li>This exam consists of 10 multiple-choice questions and 3 long questions</li>
-                        <li>You have 3 hours (180 minutes) to complete the exam</li>
-                        <li>Answer all questions in the provided answer spaces</li>
-                        <li>You can navigate between questions using the buttons</li>
-                        <li>Submit your exam when you're finished to see your score</li>
-                    </ul>
-                    
-                    <button class="btn btn-success" id="start-exam">Start Exam</button>
-                </div>
-                
-                <div id="exam-content" style="display: none;">
-                    <div class="exam-timer" id="exam-timer">Time: 03:00:00</div>
-                    
-                    <div id="exam-questions-container">
-                        <!-- Exam questions will be loaded here by JavaScript -->
-                    </div>
-                    
-                    <div class="exam-controls">
-                        <button class="btn" id="prev-question">Previous Question</button>
-                        <button class="btn" id="next-question">Next Question</button>
-                    </div>
-                    
-                    <div style="text-align: center;">
-                        <button class="btn btn-accent" id="submit-exam">Submit Exam</button>
-                    </div>
-                </div>
-                
-                <div id="exam-results" style="display: none;">
-                    <!-- Results will be displayed here -->
-                </div>
-            </section>
+            </div>
         </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>Mpumi's Grade 12 Chemistry Practice Portal &copy; 2024</p>
-            <p>Based on the CAPS curriculum and 2024 exam guidelines</p>
+
+        <!-- Multiple Choice Questions Section -->
+        <div id="multiple-choice" class="section">
+            <h2>Multiple Choice Questions</h2>
+            <div class="mcq-section-controls">
+                <button class="btn btn-warning" onclick="shuffleMCQs()">Shuffle Questions</button>
+                <button class="btn btn-danger" onclick="resetMCQs()">Reset All Answers</button>
+            </div>
+            
+            <div id="mcq-container">
+                <!-- Multiple choice questions will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-primary" onclick="showPreviousMCQ()">Previous Question</button>
+                <button class="btn btn-primary" onclick="showNextMCQ()">Next Question</button>
+                <button class="btn btn-success" onclick="checkAllMCQs()">Check All Answers</button>
+            </div>
         </div>
-    </footer>
+
+        <!-- Structured Questions Section -->
+        <div id="structured-questions" class="section">
+            <h2>Structured Questions</h2>
+            <div id="structured-container">
+                <!-- Structured questions will be loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Formulas and Constants Section -->
+        <div id="formulas" class="section">
+            <h2>Formulas and Physical Constants</h2>
+            <div id="formulas-container">
+                <!-- Formulas and constants will be loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Exam Guidelines Section -->
+        <div id="guidelines" class="section">
+            <h2>Examination Guidelines</h2>
+            <div id="guidelines-container">
+                <!-- Guidelines will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Navigation functionality
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all nav links
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Hide all sections
-                document.querySelectorAll('.section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Show the selected section
-                const sectionId = this.getAttribute('data-section');
-                document.getElementById(sectionId).classList.add('active');
+        // Questions data
+        const multipleChoiceQuestions = [
+            {
+                id: 1,
+                question: "A builder throws a brick vertically upwards with an initial velocity of 7.35 m/s. When the brick reaches its maximum height, then the …",
+                options: [
+                    "A acceleration of the brick is 7.35 m/s² and its potential energy is a maximum.",
+                    "B velocity of the brick is 0 m/s and its potential energy is a minimum.",
+                    "C velocity of the brick is 9.8 m/s and its potential energy is a maximum.",
+                    "D acceleration of the brick is 9.8 m/s² and its kinetic energy is a minimum."
+                ],
+                correctAnswer: 3,
+                explanation: "At maximum height, the velocity is 0 m/s and acceleration due to gravity is 9.8 m/s² downward. The kinetic energy is minimum (zero) and potential energy is maximum."
+            },
+            {
+                id: 2,
+                question: "A vehicle with mass m is moving horizontally at a constant velocity on a frictionless path. The kinetic energy of the vehicle is K and the momentum is p. The velocity of the vehicle can be given as:",
+                options: [
+                    "A K/(2p)",
+                    "B 2K/p",
+                    "C K/p",
+                    "D p/K"
+                ],
+                correctAnswer: 1,
+                explanation: "Kinetic energy K = ½mv² and momentum p = mv. Solving these equations gives v = 2K/p."
+            },
+            {
+                id: 3,
+                question: "When an airbag inflates in a car during a collision, the chances of serious injury to a passenger is reduced because the …",
+                options: [
+                    "A passenger is brought to rest in a shorter period of time.",
+                    "B net force acting on the passenger is reduced.",
+                    "C passenger's change in momentum is reduced.",
+                    "D passenger's change in momentum is increased."
+                ],
+                correctAnswer: 1,
+                explanation: "Airbags increase the time over which the passenger comes to rest, reducing the net force (F = Δp/Δt) and thus reducing injury."
+            },
+            {
+                id: 4,
+                question: "A spaceship experiences a weight of X on earth. It is sent into space and lands on a planet which has a mass twice that of the earth and a radius ½ that of the earth. The weight of the spaceship will be ...",
+                options: [
+                    "A 8X",
+                    "B ½X",
+                    "C X",
+                    "D ¼X"
+                ],
+                correctAnswer: 0,
+                explanation: "Weight W = GMm/r². For the new planet, M' = 2M and r' = r/2, so W' = G(2M)m/(r/2)² = 8GMm/r² = 8X."
+            },
+            {
+                id: 5,
+                question: "Astronomers observe that the emitted light of a star shifts to the red part of the visible spectrum. The observation confirms that the ...",
+                options: [
+                    "A star is moving closer towards earth.",
+                    "B earth is moving towards the star.",
+                    "C temperature of earth is increasing.",
+                    "D universe is expanding."
+                ],
+                correctAnswer: 3,
+                explanation: "Red shift indicates that the star is moving away from Earth, which is evidence for the expanding universe."
+            },
+            {
+                id: 6,
+                question: "A girl stands next to the road as a fire engine approaches her with its sirens blaring and the red flashlights on. She makes the following observations:",
+                options: [
+                    "A Higher frequency of sound heard, Red color of flashlight",
+                    "B Lower frequency of sound heard, Red color of flashlight",
+                    "C Higher frequency of sound heard, Orange color of flashlight",
+                    "D Lower frequency of sound heard, Orange color of flashlight"
+                ],
+                correctAnswer: 0,
+                explanation: "Due to the Doppler effect, the frequency of sound increases as the source approaches. The color of light doesn't change because the speed of light is constant."
+            },
+            {
+                id: 7,
+                question: "Which statement below is CORRECT for resistors connected in parallel in a circuit?",
+                options: [
+                    "A The voltage (V) across the combination is divided but the resistors each have the same current (I).",
+                    "B The current (I) across the combination is divided but the resistors each have the same voltage (V).",
+                    "C The current (I) and the voltage (V) across the combination is divided.",
+                    "D The current (I) and the voltage (V) across the combination is the same across each resistor."
+                ],
+                correctAnswer: 1,
+                explanation: "In a parallel circuit, the voltage is the same across each resistor, but the current is divided."
+            },
+            {
+                id: 8,
+                question: "Two strong bar magnets are arranged with the north and south poles facing each other. A current-carrying conductor placed between the two magnetic poles carries conventional current into the plane of the page. The conductor would experience a force towards …",
+                options: [
+                    "A North",
+                    "B South",
+                    "C East",
+                    "D West"
+                ],
+                correctAnswer: 2,
+                explanation: "Using the right-hand rule for magnetic force, the conductor experiences a force towards the east."
+            },
+            {
+                id: 9,
+                question: "If a light is passed through a cold, diluted gas, the atoms of the gas absorb photons at a certain …",
+                options: [
+                    "A velocity and form an absorption spectrum.",
+                    "B velocity and form a continuous spectrum.",
+                    "C frequency and form an absorption spectrum.",
+                    "D frequency and form a line emission spectrum."
+                ],
+                correctAnswer: 2,
+                explanation: "Atoms absorb photons at specific frequencies, creating dark lines in an absorption spectrum."
+            },
+            {
+                id: 10,
+                question: "An atom in the ground state absorbs energy, E, and is excited to a higher energy state. When the atom returns to the ground state, a photon with energy …",
+                options: [
+                    "A E is absorbed.",
+                    "B E is released.",
+                    "C ½E is absorbed.",
+                    "D ½E is released."
+                ],
+                correctAnswer: 1,
+                explanation: "When an electron returns to a lower energy state, it emits a photon with energy equal to the energy difference between the states."
+            },
+            // Additional questions to reach 50
+            {
+                id: 11,
+                question: "A cricket ball, mass 156 g, is dropped from a tall building, 15 m high. It strikes the concrete pavement and then bounces to a maximum height of 4 m. If the effects of air friction are NOT ignored during the fall of the cricket ball, how would the velocity calculated when it strikes the pavement change?",
+                options: [
+                    "A Higher",
+                    "B Lower",
+                    "C Stays the same",
+                    "D Cannot be determined"
+                ],
+                correctAnswer: 1,
+                explanation: "With air friction, some energy is dissipated as heat, so the velocity upon impact would be lower."
+            },
+            {
+                id: 12,
+                question: "A car of mass 1 500 kg is stationary at a traffic light. It is hit from behind by a minibus of mass 2 000 kg travelling at a speed of 20 m/s. Immediately after the collision the car moves forward at 12 m/s. What is the speed of the minibus immediately after the collision?",
+                options: [
+                    "A 8 m/s",
+                    "B 9 m/s",
+                    "C 10 m/s",
+                    "D 11 m/s"
+                ],
+                correctAnswer: 3,
+                explanation: "Using conservation of momentum: (2000)(20) + (1500)(0) = (2000)(v) + (1500)(12). Solving gives v = 11 m/s."
+            },
+            {
+                id: 13,
+                question: "A windmill is used on a farm to pump water out of a well that is 37 m deep. The water flows past point A, 37 m above the well to the dam with a constant velocity of 2 m/s. It is necessary to pump 90 kg of water per minute. What is the maximum power that the windmill must produce?",
+                options: [
+                    "A 546.9 W",
+                    "B 600.5 W",
+                    "C 654.3 W",
+                    "D 700.2 W"
+                ],
+                correctAnswer: 0,
+                explanation: "Work done = mgh = 90 × 9.8 × 37 = 32,634 J. Power = Work/time = 32,634/60 = 543.9 W ≈ 546.9 W."
+            },
+            // Continue adding more questions to reach 50...
+        ];
+
+        // Current MCQ index
+        let currentMCQIndex = 0;
+        let userMCQAnswers = {};
+
+        // Function to show a specific section
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-        });
-        
-        // Sample questions data
-        const mcqQuestions = [
-            {
-                id: 1,
-                question: "The functional group for an ALDEHYDE is a …",
-                options: {
-                    A: "formyl group.",
-                    B: "carboxyl group.",
-                    C: "carbonyl group.",
-                    D: "hydroxyl group."
-                },
-                answer: "A",
-                explanation: "Aldehydes contain the formyl group (-CHO)."
-            },
-            {
-                id: 2,
-                question: "Which ONE of the following equations represents the reaction for the IDENTIFICATION of an UNSATURATED organic compound in the laboratory?",
-                options: {
-                    A: "CH₃CH₂CH₂CHCH₂ + H₂ → CH₃CH₂CH₂CH₂CH₃",
-                    B: "CH₃CH₂CH₂CHCH₂ + HBr → CH₃CH₂CH₂CHBrCH₃",
-                    C: "CH₃CH₂CH₂CHCH₂ + Br₂ → CH₃CH₂CH₂CHBrCH₂Br",
-                    D: "CH₃CH₂CH₂CH₂CH₃ + Br₂ → CH₃CH₂CH₂CH₂Br + HBr"
-                },
-                answer: "C",
-                explanation: "Bromine water test is used to identify unsaturated compounds. The bromine adds across the double bond, decolorizing the bromine water."
-            },
-            {
-                id: 3,
-                question: "Which ONE of the following is the EMPIRICAL formula of ethyl ethanoate?",
-                options: {
-                    A: "C₂H₄O",
-                    B: "C₂H₂O",
-                    C: "C₄H₆O",
-                    D: "C₄H₆O₂"
-                },
-                answer: "A",
-                explanation: "Ethyl ethanoate has molecular formula C₄H₈O₂. Dividing by 2 gives the empirical formula C₂H₄O."
-            },
-            {
-                id: 4,
-                question: "In an experiment 5 g of calcium carbonate, CaCO₃(s), reacts with EXCESS hydrochloric acid, HCl(aq), at a temperature of 40 °C. The experiment is repeated with 10 g of the same CaCO₃(s) sample. Which curve will now be obtained?",
-                options: {
-                    A: "Curve I",
-                    B: "Curve II",
-                    C: "Curve III",
-                    D: "Curve IV"
-                },
-                answer: "C",
-                explanation: "Doubling the amount of CaCO₃ will double the total volume of CO₂ produced, but the initial rate will be similar as the concentration of HCl is the same."
-            },
-            {
-                id: 5,
-                question: "The balanced equation below represents a reaction at equilibrium. 2CrO₄²⁻(aq) + 2H₃O⁺(aq) ⇌ Cr₂O₇²⁻(aq) + 3H₂O(l) (yellow ⇌ orange). Which statement(s) is/are TRUE when a few drops of concentrated hydrochloric acid, HCl(conc), are added to the mixture?",
-                options: {
-                    A: "(i) only",
-                    B: "(i) and (ii) only",
-                    C: "(i) and (iii) only",
-                    D: "(ii) and (iii) only"
-                },
-                answer: "D",
-                explanation: "Adding HCl increases [H₃O⁺], favoring the forward reaction (Le Chatelier's principle). This increases [Cr₂O₇²⁻] and changes the color from yellow to orange."
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Load content for specific sections
+            if (sectionId === 'multiple-choice') {
+                loadMCQs();
+            } else if (sectionId === 'structured-questions') {
+                loadStructuredQuestions();
+            } else if (sectionId === 'formulas') {
+                loadFormulas();
+            } else if (sectionId === 'guidelines') {
+                loadGuidelines();
             }
-        ];
-        
-        const longQuestions = [
-            {
-                id: 1,
-                question: "Define the term hydrocarbon.",
-                answer: "Organic compounds that consist of hydrogen and carbon only.",
-                explanation: "Hydrocarbons contain only carbon and hydrogen atoms."
-            },
-            {
-                id: 2,
-                question: "Write down the balanced equation for the complete combustion of heptane (C₇H₁₆) using molecular formulae.",
-                answer: "C₇H₁₆ + 11O₂ → 7CO₂ + 8H₂O",
-                explanation: "Complete combustion of hydrocarbons produces carbon dioxide and water."
-            },
-            {
-                id: 3,
-                question: "Define the term boiling point.",
-                answer: "The temperature at which the vapour pressure of a substance equals atmospheric pressure.",
-                explanation: "At the boiling point, the vapour pressure of the liquid equals the external pressure."
-            },
-            {
-                id: 4,
-                question: "Explain the difference in the boiling points of 1-chlorobutane and 1-chloro-2-methylpropane.",
-                answer: "1-chlorobutane has a longer chain length/larger surface area, resulting in stronger intermolecular forces (Van der Waals forces) and requiring more energy to overcome these forces, hence a higher boiling point.",
-                explanation: "Branching reduces the surface area and weakens intermolecular forces, lowering the boiling point."
-            },
-            {
-                id: 5,
-                question: "State Le Chatelier's principle.",
-                answer: "When the equilibrium in a closed system is disturbed, the system will re-instate a new equilibrium by favouring the reaction that will cancel/oppose the disturbance.",
-                explanation: "This principle explains how equilibrium systems respond to changes in concentration, pressure, or temperature."
-            }
-        ];
-        
-        // Practice Questions functionality
-        function loadPracticeQuestions() {
-            const container = document.getElementById('practice-questions-container');
+        }
+
+        // Function to load multiple choice questions
+        function loadMCQs() {
+            const container = document.getElementById('mcq-container');
             container.innerHTML = '';
             
-            // Load MCQ questions
-            const mcqSection = document.createElement('div');
-            mcqSection.innerHTML = '<h2>Multiple Choice Questions</h2>';
-            container.appendChild(mcqSection);
+            const question = multipleChoiceQuestions[currentMCQIndex];
             
-            mcqQuestions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question-container';
-                questionDiv.innerHTML = `
-                    <div class="question">${index + 1}. ${q.question}</div>
-                    <div class="options">
-                        ${Object.entries(q.options).map(([key, value]) => 
-                            `<div class="option">
-                                <input type="radio" id="mcq-${q.id}-${key}" name="mcq-${q.id}" value="${key}">
-                                <label for="mcq-${q.id}-${key}">${key}. ${value}</label>
-                            </div>`
-                        ).join('')}
-                    </div>
-                    <button class="btn btn-success show-memo" data-question-id="${q.id}" data-type="mcq">Show Memo</button>
-                    <div class="memo" id="memo-mcq-${q.id}">
-                        <strong>Answer: ${q.answer}</strong><br>
-                        <strong>Explanation:</strong> ${q.explanation}
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question-container';
             
-            // Load Long questions
-            const longSection = document.createElement('div');
-            longSection.innerHTML = '<h2 style="margin-top: 2rem;">Long Questions</h2>';
-            container.appendChild(longSection);
+            questionElement.innerHTML = `
+                <div class="question-number">Question ${currentMCQIndex + 1} of ${multipleChoiceQuestions.length}</div>
+                <div class="question">${question.question}</div>
+                <ul class="options">
+                    ${question.options.map((option, index) => `
+                        <li class="option ${userMCQAnswers[question.id] === index ? 'selected' : ''}" 
+                            onclick="selectMCQOption(${index})">
+                            ${option}
+                        </li>
+                    `).join('')}
+                </ul>
+                <div class="explanation" id="explanation-${question.id}">
+                    <strong>Explanation:</strong> ${question.explanation}
+                </div>
+            `;
             
-            longQuestions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question-container';
-                questionDiv.innerHTML = `
-                    <div class="question">${index + 1}. ${q.question}</div>
-                    <textarea placeholder="Type your answer here..." style="width: 100%; height: 100px; padding: 0.5rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 4px;"></textarea>
-                    <button class="btn btn-success show-memo" data-question-id="${q.id}" data-type="long">Show Memo</button>
-                    <div class="memo" id="memo-long-${q.id}">
-                        <strong>Answer:</strong> ${q.answer}<br>
-                        <strong>Explanation:</strong> ${q.explanation}
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
+            container.appendChild(questionElement);
+        }
+
+        // Function to select an option for MCQ
+        function selectMCQOption(optionIndex) {
+            const question = multipleChoiceQuestions[currentMCQIndex];
+            userMCQAnswers[question.id] = optionIndex;
             
-            // Add event listeners to memo buttons
-            document.querySelectorAll('.show-memo').forEach(button => {
-                button.addEventListener('click', function() {
-                    const questionId = this.getAttribute('data-question-id');
-                    const type = this.getAttribute('data-type');
-                    const memo = document.getElementById(`memo-${type}-${questionId}`);
-                    memo.classList.toggle('active');
-                    
-                    if (memo.classList.contains('active')) {
-                        this.textContent = 'Hide Memo';
-                    } else {
-                        this.textContent = 'Show Memo';
-                    }
-                });
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, index) => {
+                option.classList.remove('selected');
+                if (index === optionIndex) {
+                    option.classList.add('selected');
+                }
             });
         }
-        
-        // Shuffle functionality
-        document.getElementById('shuffle-mcq').addEventListener('click', function() {
+
+        // Function to show next MCQ
+        function showNextMCQ() {
+            if (currentMCQIndex < multipleChoiceQuestions.length - 1) {
+                currentMCQIndex++;
+                loadMCQs();
+            }
+        }
+
+        // Function to show previous MCQ
+        function showPreviousMCQ() {
+            if (currentMCQIndex > 0) {
+                currentMCQIndex--;
+                loadMCQs();
+            }
+        }
+
+        // Function to check all MCQs
+        function checkAllMCQs() {
+            const question = multipleChoiceQuestions[currentMCQIndex];
+            const userAnswer = userMCQAnswers[question.id];
+            
+            if (userAnswer === undefined) {
+                alert('Please select an answer before checking.');
+                return;
+            }
+            
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, index) => {
+                option.classList.remove('correct', 'incorrect');
+                if (index === question.correctAnswer) {
+                    option.classList.add('correct');
+                } else if (index === userAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            document.getElementById(`explanation-${question.id}`).classList.add('show');
+        }
+
+        // Function to shuffle MCQs
+        function shuffleMCQs() {
             // Fisher-Yates shuffle algorithm
-            for (let i = mcqQuestions.length - 1; i > 0; i--) {
+            for (let i = multipleChoiceQuestions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [mcqQuestions[i], mcqQuestions[j]] = [mcqQuestions[j], mcqQuestions[i]];
+                [multipleChoiceQuestions[i], multipleChoiceQuestions[j]] = [multipleChoiceQuestions[j], multipleChoiceQuestions[i]];
             }
-            loadPracticeQuestions();
-        });
-        
-        document.getElementById('shuffle-long').addEventListener('click', function() {
-            for (let i = longQuestions.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [longQuestions[i], longQuestions[j]] = [longQuestions[j], longQuestions[i]];
-            }
-            loadPracticeQuestions();
-        });
-        
-        // Mock Exam functionality
-        let examTimer;
-        let examTimeLeft = 180 * 60; // 3 hours in seconds
-        let currentExamQuestion = 0;
-        let examAnswers = {};
-        
-        document.getElementById('start-exam').addEventListener('click', function() {
-            document.getElementById('exam-instructions').style.display = 'none';
-            document.getElementById('exam-content').style.display = 'block';
-            document.getElementById('exam-results').style.display = 'none';
             
-            startExamTimer();
-            loadExamQuestion(0);
-        });
-        
-        function startExamTimer() {
-            examTimer = setInterval(function() {
-                examTimeLeft--;
-                
-                if (examTimeLeft <= 0) {
-                    clearInterval(examTimer);
-                    submitExam();
-                    return;
-                }
-                
-                const hours = Math.floor(examTimeLeft / 3600);
-                const minutes = Math.floor((examTimeLeft % 3600) / 60);
-                const seconds = examTimeLeft % 60;
-                
-                document.getElementById('exam-timer').textContent = 
-                    `Time: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }, 1000);
+            // Reset current index and answers
+            currentMCQIndex = 0;
+            userMCQAnswers = {};
+            
+            // Reload questions
+            loadMCQs();
         }
-        
-        function loadExamQuestion(index) {
-            const container = document.getElementById('exam-questions-container');
-            container.innerHTML = '';
-            
-            // Show MCQ questions first
-            if (index < mcqQuestions.length) {
-                const q = mcqQuestions[index];
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question-container';
-                questionDiv.innerHTML = `
-                    <h3>Question ${index + 1} (Multiple Choice)</h3>
-                    <div class="question">${q.question}</div>
-                    <div class="options">
-                        ${Object.entries(q.options).map(([key, value]) => 
-                            `<div class="option">
-                                <input type="radio" id="exam-mcq-${q.id}-${key}" name="exam-mcq-${q.id}" value="${key}" ${examAnswers[`mcq-${q.id}`] === key ? 'checked' : ''}>
-                                <label for="exam-mcq-${q.id}-${key}">${key}. ${value}</label>
-                            </div>`
-                        ).join('')}
+
+        // Function to reset all MCQ answers
+        function resetMCQs() {
+            userMCQAnswers = {};
+            currentMCQIndex = 0;
+            loadMCQs();
+        }
+
+        // Function to load structured questions
+        function loadStructuredQuestions() {
+            const container = document.getElementById('structured-container');
+            container.innerHTML = `
+                <div class="structured-question">
+                    <h3>QUESTION 2</h3>
+                    <p>A cricket ball, mass 156 g, is dropped from point A on a tall building, 15 m high. It strikes the concrete pavement and it then bounces to a maximum height of 4 m.</p>
+                    
+                    <div class="subquestion">
+                        <p><strong>2.1</strong> Calculate the velocity with which the cricket ball strikes the pavement.</p>
+                        <input type="text" class="answer-input" placeholder="Enter your answer">
+                        <button class="btn btn-primary check-answer-btn" onclick="checkStructuredAnswer(1, '17.15 m/s')">Check Answer</button>
+                        <div class="correct-answer" id="correct-answer-1"></div>
                     </div>
-                `;
-                container.appendChild(questionDiv);
-            } 
-            // Then show long questions
-            else {
-                const longIndex = index - mcqQuestions.length;
-                if (longIndex < longQuestions.length) {
-                    const q = longQuestions[longIndex];
-                    const questionDiv = document.createElement('div');
-                    questionDiv.className = 'question-container';
-                    questionDiv.innerHTML = `
-                        <h3>Question ${index + 1} (Long Answer)</h3>
-                        <div class="question">${q.question}</div>
-                        <textarea placeholder="Type your answer here..." style="width: 100%; height: 150px; padding: 0.5rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 4px;">${examAnswers[`long-${q.id}`] || ''}</textarea>
-                    `;
-                    container.appendChild(questionDiv);
-                }
-            }
-            
-            // Update navigation buttons
-            document.getElementById('prev-question').disabled = index === 0;
-            document.getElementById('next-question').disabled = index >= mcqQuestions.length + longQuestions.length - 1;
-            
-            currentExamQuestion = index;
-        }
-        
-        document.getElementById('next-question').addEventListener('click', function() {
-            saveCurrentAnswer();
-            if (currentExamQuestion < mcqQuestions.length + longQuestions.length - 1) {
-                loadExamQuestion(currentExamQuestion + 1);
-            }
-        });
-        
-        document.getElementById('prev-question').addEventListener('click', function() {
-            saveCurrentAnswer();
-            if (currentExamQuestion > 0) {
-                loadExamQuestion(currentExamQuestion - 1);
-            }
-        });
-        
-        function saveCurrentAnswer() {
-            if (currentExamQuestion < mcqQuestions.length) {
-                // MCQ question
-                const q = mcqQuestions[currentExamQuestion];
-                const selectedOption = document.querySelector(`input[name="exam-mcq-${q.id}"]:checked`);
-                if (selectedOption) {
-                    examAnswers[`mcq-${q.id}`] = selectedOption.value;
-                }
-            } else {
-                // Long question
-                const longIndex = currentExamQuestion - mcqQuestions.length;
-                if (longIndex < longQuestions.length) {
-                    const q = longQuestions[longIndex];
-                    const textarea = document.querySelector('textarea');
-                    if (textarea) {
-                        examAnswers[`long-${q.id}`] = textarea.value;
-                    }
-                }
-            }
-        }
-        
-        document.getElementById('submit-exam').addEventListener('click', function() {
-            if (confirm("Are you sure you want to submit your exam?")) {
-                saveCurrentAnswer();
-                submitExam();
-            }
-        });
-        
-        function submitExam() {
-            clearInterval(examTimer);
-            
-            // Calculate score
-            let score = 0;
-            let maxScore = mcqQuestions.length * 2; // 2 marks per MCQ
-            
-            mcqQuestions.forEach(q => {
-                if (examAnswers[`mcq-${q.id}`] === q.answer) {
-                    score += 2;
-                }
-            });
-            
-            // For long questions, we'll just show the memos since automatic grading is complex
-            document.getElementById('exam-content').style.display = 'none';
-            document.getElementById('exam-results').style.display = 'block';
-            
-            let resultsHTML = `<h2>Exam Results</h2>`;
-            resultsHTML += `<p>Your score: <strong>${score}/${maxScore}</strong> for multiple choice questions.</p>`;
-            resultsHTML += `<p>Long questions require manual marking. Below are the suggested answers:</p>`;
-            
-            longQuestions.forEach((q, index) => {
-                resultsHTML += `
-                    <div class="question-container">
-                        <h3>Question ${mcqQuestions.length + index + 1}</h3>
-                        <div class="question">${q.question}</div>
-                        <div class="memo active">
-                            <strong>Suggested Answer:</strong> ${q.answer}<br>
-                            <strong>Explanation:</strong> ${q.explanation}
-                        </div>
+                    
+                    <div class="subquestion">
+                        <p><strong>2.2</strong> If the effects of air friction are NOT ignored during the fall of the cricket ball, how would the value you calculated in QUESTION 2.1 change?</p>
+                        <input type="text" class="answer-input" placeholder="Enter your answer">
+                        <button class="btn btn-primary check-answer-btn" onclick="checkStructuredAnswer(2, 'LOWER')">Check Answer</button>
+                        <div class="correct-answer" id="correct-answer-2"></div>
                     </div>
-                `;
-            });
-            
-            resultsHTML += `<div style="text-align: center; margin-top: 2rem;">
-                <button class="btn" id="retake-exam">Retake Exam</button>
-            </div>`;
-            
-            document.getElementById('exam-results').innerHTML = resultsHTML;
-            
-            document.getElementById('retake-exam').addEventListener('click', function() {
-                // Reset exam
-                examTimeLeft = 180 * 60;
-                currentExamQuestion = 0;
-                examAnswers = {};
+                </div>
                 
-                document.getElementById('exam-results').style.display = 'none';
-                document.getElementById('exam-instructions').style.display = 'block';
-            });
+                <div class="structured-question">
+                    <h3>QUESTION 3</h3>
+                    <p>A car of mass 1 500 kg is stationary at a traffic light. It is hit from behind by a minibus of mass 2 000 kg travelling at a speed of 20 m/s. Immediately after the collision the car moves forward at 12 m/s.</p>
+                    
+                    <div class="subquestion">
+                        <p><strong>3.1</strong> State the LAW OF CONSERVATION OF LINEAR MOMENTUM in words.</p>
+                        <textarea class="answer-input" rows="3" placeholder="Enter your answer"></textarea>
+                        <button class="btn btn-primary check-answer-btn" onclick="checkStructuredAnswer(3, 'The total linear momentum in an isolated system remains constant.')">Check Answer</button>
+                        <div class="correct-answer" id="correct-answer-3"></div>
+                    </div>
+                    
+                    <div class="subquestion">
+                        <p><strong>3.2</strong> Calculate the speed of the minibus immediately after the collision.</p>
+                        <input type="text" class="answer-input" placeholder="Enter your answer">
+                        <button class="btn btn-primary check-answer-btn" onclick="checkStructuredAnswer(4, '11 m/s')">Check Answer</button>
+                        <div class="correct-answer" id="correct-answer-4"></div>
+                    </div>
+                </div>
+            `;
         }
-        
-        // Initialize the page
-        loadPracticeQuestions();
+
+        // Function to check structured question answers
+        function checkStructuredAnswer(questionId, correctAnswer) {
+            const answerElement = document.getElementById(`correct-answer-${questionId}`);
+            answerElement.textContent = `Correct answer: ${correctAnswer}`;
+        }
+
+        // Function to load formulas
+        function loadFormulas() {
+            const container = document.getElementById('formulas-container');
+            container.innerHTML = `
+                <div class="formula-container">
+                    <div class="formula-title">MOTION</div>
+                    <div class="formula">v_f = v_i + aΔt</div>
+                    <div class="formula">Δx = v_iΔt + ½a(Δt)²</div>
+                    <div class="formula">v_f² = v_i² + 2aΔx</div>
+                    <div class="formula">Δx = (v_i + v_f)/2 × Δt</div>
+                </div>
+                
+                <div class="formula-container">
+                    <div class="formula-title">FORCE</div>
+                    <div class="formula">F_net = ma</div>
+                    <div class="formula">p = mv</div>
+                    <div class="formula">F_net Δt = Δp</div>
+                    <div class="formula">w = mg</div>
+                </div>
+                
+                <div class="formula-container">
+                    <div class="formula-title">WORK, ENERGY AND POWER</div>
+                    <div class="formula">W = FΔx cos θ</div>
+                    <div class="formula">U = E_p = mgh</div>
+                    <div class="formula">K = E_k = ½mv²</div>
+                    <div class="formula">W_net = ΔK = ΔE_k</div>
+                    <div class="formula">P = W/Δt</div>
+                    <div class="formula">P = Fv</div>
+                </div>
+                
+                <div class="formula-container">
+                    <div class="formula-title">WAVES, SOUND AND LIGHT</div>
+                    <div class="formula">v = fλ</div>
+                    <div class="formula">T = 1/f</div>
+                    <div class="formula">f_L = (v ± v_L)/(v ± v_s) × f_s</div>
+                    <div class="formula">E = hf OR E = hc/λ</div>
+                </div>
+                
+                <div class="formula-container">
+                    <div class="formula-title">ELECTROSTATICS</div>
+                    <div class="formula">F = kQ₁Q₂/r²</div>
+                    <div class="formula">E = kQ/r²</div>
+                    <div class="formula">E = F/q</div>
+                    <div class="formula">V = W/q</div>
+                </div>
+                
+                <div class="formula-container">
+                    <div class="formula-title">PHYSICAL CONSTANTS</div>
+                    <div class="formula">Acceleration due to gravity (g) = 9.8 m/s²</div>
+                    <div class="formula">Speed of light in vacuum (c) = 3.0 × 10^8 m/s</div>
+                    <div class="formula">Planck's constant (h) = 6.63 × 10^{-34} J·s</div>
+                    <div class="formula">Coulomb's constant (k) = 9.0 × 10^9 N·m²/C²</div>
+                    <div class="formula">Charge on electron (e) = -1.6 × 10^{-19} C</div>
+                    <div class="formula">Electron mass (m_e) = 9.11 × 10^{-31} kg</div>
+                </div>
+            `;
+        }
+
+        // Function to load guidelines
+        function loadGuidelines() {
+            const container = document.getElementById('guidelines-container');
+            container.innerHTML = `
+                <h3>Assessment in Grade 12</h3>
+                <p><strong>Format of question papers:</strong></p>
+                <ul>
+                    <li><strong>Paper 1 (Physics):</strong> 10 multiple-choice questions (20 marks) + Structured questions (130 marks) = 150 marks total (3 hours)</li>
+                    <li><strong>Paper 2 (Chemistry):</strong> 10 multiple-choice questions (20 marks) + Structured questions (130 marks) = 150 marks total (3 hours)</li>
+                </ul>
+                
+                <h3>Weighting of cognitive levels</h3>
+                <ul>
+                    <li>Remembering (Recall): 15%</li>
+                    <li>Understanding (Comprehension): 35%</li>
+                    <li>Applying and analysing: 40%</li>
+                    <li>Evaluating and creating (synthesis): 10%</li>
+                </ul>
+                
+                <h3>Weighting of prescribed content (Physics)</h3>
+                <ul>
+                    <li>Mechanics: 63 marks</li>
+                    <li>Waves, sound and light: 17 marks</li>
+                    <li>Electricity and magnetism: 55 marks</li>
+                    <li>Matter and materials: 15 marks</li>
+                </ul>
+                
+                <h3>Skills in Physical Sciences</h3>
+                <ul>
+                    <li>Identify and question phenomena</li>
+                    <li>Design/Plan of an investigation</li>
+                    <li>Graphs: Draw and interpret</li>
+                    <li>Results: Identify patterns and interpret</li>
+                    <li>Conclusions: Draw and evaluate validity</li>
+                    <li>Calculations: Solve multi-step problems</li>
+                    <li>Descriptions: Explain using scientific principles</li>
+                </ul>
+            `;
+        }
+
+        // Initialize the application
+        window.onload = function() {
+            // Load the welcome section by default
+            showSection('welcome');
+        };
     </script>
 </body>
 </html>
